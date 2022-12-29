@@ -15,7 +15,7 @@ phases:
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - AWS_DEFAULT_REGION="us-east-1"
       - DOCKERTEST=$(find / -type d -name "envsubst")
-      - aws ecs register-task-definition --family demo --region $AWS_DEFAULT_REGION --cli-input-json file:///$DOCKERTEST/task-definition1.json
+      - aws ecs register-task-definition --family demo --region $AWS_DEFAULT_REGION --cli-input-json file:///$DOCKERTEST/task-definition.json
       - TASK_REVISION=$(aws ecs describe-task-definition --task-definition demo --region $AWS_DEFAULT_REGION | jq '.taskDefinition.revision')
       - echo $TASK_REVISION
       # - aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --region $AWS_DEFAULT_REGION --task-definition "$TASK_DEFINITION_NAME:${TASK_REVISION}"
