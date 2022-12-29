@@ -19,11 +19,11 @@
           "environment": [
               {
                 "name": "ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID",
-                "value": "ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID"
+                "value": "$ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID"
               },
               {
                 "name": "ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC",
-                "value": "ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC"
+                "value": "$ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC"
               }          
           ],
           "environmentFiles": [],
