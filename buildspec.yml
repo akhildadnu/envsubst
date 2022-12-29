@@ -1,0 +1,24 @@
+version: 0.2
+env:
+  parameter-store:
+    ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID: '${ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID}'
+    ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC: '${ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC}'
+
+phases:
+  install:
+    commands:
+      - echo "Install Phase - Nothing to do using latest Amazon Linux Docker Image for CodeBuild which has all AWS Tools - https://github.com/aws/aws-codebuild-docker-images/blob/master/al2/x86_64/standard/3.0/Dockerfile"
+  pre_build:
+    commands:
+      - echo "$ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID" , "$ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC" | envsubst
+      - envsubst '${ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID}, ${ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC}' > task-definition.json
+  build:
+    commands:
+      - echo $CODEBUILD_SOURCE_VERSION
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - AWS_DEFAULT_REGION="us-east-1"
+      - DOCKERTEST=$(find / -type d -name "envsubst")
+      - aws ecs register-task-definition --family demo --region $AWS_DEFAULT_REGION --cli-input-json file:///$DOCKERTEST/task-definition1.json
+      - TASK_REVISION=$(aws ecs describe-task-definition --task-definition demo --region $AWS_DEFAULT_REGION | jq '.taskDefinition.revision')
+      - echo $TASK_REVISION
+      # - aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --region $AWS_DEFAULT_REGION --task-definition "$TASK_DEFINITION_NAME:${TASK_REVISION}"
