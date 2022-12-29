@@ -1,0 +1,53 @@
+{
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
+  "containerDefinitions": [
+      {
+          "name": "reddogcontainer",
+          "image": "testimage",,
+          "essential": true,
+          "portMappings": [
+              {
+                  "containerPort": "5000",
+                  "protocol": "tcp"
+              }
+          ],
+          "entryPoint": [],
+          "command": [],
+          "environment": [
+              {
+                  "ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID" : "$ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID",
+                  "ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC" : "$ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC"                
+              }          
+          ],
+          "environmentFiles": [],
+          "secrets": [],
+          "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                  "awslogs-group": "/ecs/reddogcontainer",
+                  "awslogs-region": "eu-west-2",
+                  "awslogs-stream-prefix": "ecs"
+              }
+          },
+          "ulimits": null,
+          "dockerLabels": null,
+          "dependsOn": null,
+          "repositoryCredentials": {
+              "credentialsParameter": ""
+          }
+      }
+  ],
+  "volumes": [],
+  "networkMode": "awsvpc",
+  "memory": "512",
+  "cpu": "256",
+  "executionRoleArn": "arn:aws:iam::212458924932:role/ecsTaskExecutionRole",
+  "family": "reddogcontainer",
+  "taskRoleArn": "arn:aws:iam::212458924932:role/ecsTaskExecutionRole",
+  "runtimePlatform": {
+      "operatingSystemFamily": "LINUX"
+  },
+  "tags": []
+}
