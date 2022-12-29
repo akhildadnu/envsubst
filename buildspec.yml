@@ -10,8 +10,8 @@ phases:
       - echo "Install Phase - Nothing to do using latest Amazon Linux Docker Image for CodeBuild which has all AWS Tools - https://github.com/aws/aws-codebuild-docker-images/blob/master/al2/x86_64/standard/3.0/Dockerfile"
   pre_build:
     commands:
-#       - echo "$ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID" , "$ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC" | envsubst
-#       - envsubst '${ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID}, ${ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC}' > task-definition.json
+      - echo "$ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID" | envsubst
+      - envsubst '${ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID}' > task-definition.json
   build:
     commands:
       - echo $CODEBUILD_SOURCE_VERSION
