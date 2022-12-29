@@ -5,7 +5,8 @@
   "containerDefinitions": [
       {
           "name": "reddogcontainer",
-          "image": "testimage",,
+          "image": "testimage",
+          "resourceRequirements": null,
           "essential": true,
           "portMappings": [
               {
@@ -17,12 +18,22 @@
           "command": [],
           "environment": [
               {
-                  "ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID" : "$ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID",
-                  "ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC" : "$ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC"                
+                "name": "ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID",
+                "value": "$ALTGAME_AGPAY_TRANSACTION_UPDATE_CONSUMER_GROUP_ID"
+              },
+              {
+                "name": "ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC",
+                "value": "$ALTGAME_AGPAY_TRANSACTION_UPDATE_TOPIC"
               }          
           ],
           "environmentFiles": [],
-          "secrets": [],
+          "secrets": null,
+          "mountPoints": null,
+          "volumesFrom": null,
+          "hostname": null,
+          "user": null,
+          "workingDirectory": null,
+          "extraHosts": null,
           "logConfiguration": {
               "logDriver": "awslogs",
               "options": {
